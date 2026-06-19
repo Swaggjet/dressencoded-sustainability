@@ -3,78 +3,58 @@
 export default function Pillars() {
   const styles = {
     section: {
-      padding: '80px 40px',
+      padding: '60px 40px',
       maxWidth: '1200px',
       margin: '0 auto',
-    },
-    title: {
-      fontSize: '32px',
-      fontFamily: "'Bebas Neue', sans-serif",
-      fontWeight: 700,
-      letterSpacing: '2px',
-      textTransform: 'uppercase',
-      marginBottom: '60px',
-      color: '#f5c400',
-      textAlign: 'center',
-      borderBottom: '2px solid #f5c400',
-      paddingBottom: '20px',
+      background: '#cac9d1',
     },
     grid: {
       display: 'grid',
       gridTemplateColumns: 'repeat(4, 1fr)',
-      gap: '30px',
+      gap: '20px',
     },
     card: {
-      padding: '40px 32px',
-      border: '1px solid rgba(245, 196, 0, 0.25)',
+      padding: '28px 24px',
+      border: '1.5px solid #3DDC84',
       borderRadius: '4px',
-      backgroundColor: 'rgba(245, 196, 0, 0.03)',
+      backgroundColor: '#494475',
       transition: 'all 0.3s ease',
-      textAlign: 'center',
-      cursor: 'pointer',
     },
-    icon: {
-      fontSize: '32px',
-      marginBottom: '20px',
+    number: {
+      fontSize: '22px',
+      fontFamily: "'Bebas Neue', sans-serif",
+      fontWeight: 700,
+      color: '#AFA9EC',
+      marginBottom: '16px',
     },
     cardTitle: {
       fontSize: '14px',
-      fontFamily: "'Bebas Neue', sans-serif",
-      fontWeight: 700,
-      letterSpacing: '1px',
-      marginBottom: '16px',
-      color: '#f5c400',
-      textTransform: 'uppercase',
+      fontWeight: 600,
+      marginBottom: '10px',
+      color: '#ffffff',
     },
     cardText: {
       fontSize: '12px',
-      color: '#cccccc',
+      color: '#CECBF6',
       lineHeight: '1.7',
     },
   };
 
   const pillars = [
-    { icon: '◆', title: 'Smart Provenance', text: 'Every garment carries a permanent ownership chain. No receipts lost, no history erased.' },
-    { icon: '↻', title: 'Circular by Design', text: 'When a piece moves to a new owner, the chain grows — incentivizing resale over disposal.' },
-    { icon: '▢', title: 'Buy Less. Own More.', text: 'A DRESSENCODED piece is not a purchase — it is an investment.' },
-    { icon: '⬟', title: 'The Garment as a Node', text: 'Smart Chassis garments connect to a living network that increases value over time.' },
+    { num: '01', title: 'Hardware-Verified Passports', text: "Turning static garments into verified nodes for lifetime upkeep and recycling, directly combating the fashion industry's 20% global pollution output." },
+    { num: '02', title: 'Responsible Lifecycle Badges', text: "Earn status recognition for your garment's longevity. This badge updates as you responsibly care for, extend the life of, or ultimately recycle your pieces through the network." },
+    { num: '03', title: 'The Circular Return', text: 'A responsible exit strategy. When a garment finally reaches its physical limit, its materials are routed toward advanced upcycling to eliminate waste.' },
+    { num: '04', title: 'The Circular Cash Loop', text: 'Participating in the ecosystem unlocks community perks and points towards NODE Credit rewards, fueling a greener lifecycle.' },
   ];
 
   return (
     <section style={styles.section}>
-      <h2 style={styles.title}>Our Four Pillars</h2>
       <div style={styles.grid}>
         {pillars.map((p, i) => (
-          <div key={i} style={styles.card} onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = '#f5c400';
-            e.currentTarget.style.backgroundColor = 'rgba(245, 196, 0, 0.08)';
-            e.currentTarget.style.transform = 'translateY(-4px)';
-          }} onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(245, 196, 0, 0.25)';
-            e.currentTarget.style.backgroundColor = 'rgba(245, 196, 0, 0.03)';
-            e.currentTarget.style.transform = 'translateY(0)';
-          }}>
-            <div style={styles.icon}>{p.icon}</div>
+          <div key={i} style={styles.card}
+            onMouseEnter={(e) => { e.currentTarget.style.borderColor = '#1D9E75'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#3DDC84'; }}>
+            <div style={styles.number}>{p.num}</div>
             <h3 style={styles.cardTitle}>{p.title}</h3>
             <p style={styles.cardText}>{p.text}</p>
           </div>
@@ -83,3 +63,4 @@ export default function Pillars() {
     </section>
   );
 }
+

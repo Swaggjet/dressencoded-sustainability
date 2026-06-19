@@ -9,35 +9,38 @@ export default function HowItWorks() {
 
   const styles = {
     section: {
-      padding: '80px 40px',
+      padding: '60px 40px',
       maxWidth: '1400px',
       margin: '0 auto',
-      borderTop: '1px solid rgba(245, 196, 0, 0.2)',
+      background: '#cac9d1',
     },
     title: {
-      fontSize: '32px',
-      fontFamily: "'Bebas Neue', sans-serif",
-      fontWeight: 700,
-      letterSpacing: '2px',
-      textTransform: 'uppercase',
-      marginBottom: '60px',
-      color: '#f5c400',
+      fontSize: '14px',
+      fontWeight: 600,
+      letterSpacing: '0.5px',
+      marginBottom: '8px',
+      color: '#2e7d32',
       textAlign: 'center',
-      borderBottom: '2px solid #f5c400',
-      paddingBottom: '20px',
+    },
+    rule: {
+      height: '1.5px',
+      background: '#2e7d32',
+      opacity: 0.4,
+      width: '100%',
+      marginBottom: '40px',
     },
     container: {
       display: 'grid',
       gridTemplateColumns: '1fr 1fr',
-      gap: '80px',
+      gap: '40px',
       alignItems: 'center',
-      marginTop: '60px',
     },
   };
 
   return (
     <section style={styles.section}>
       <h2 style={styles.title}>How the Circular Protocol Works</h2>
+      <div style={styles.rule} />
       <div style={styles.container}>
         <FlowCards activeStep={activeStep} setActiveStep={setActiveStep} />
         <AquariNode activeStep={activeStep} />
@@ -45,3 +48,4 @@ export default function HowItWorks() {
     </section>
   );
 }
+

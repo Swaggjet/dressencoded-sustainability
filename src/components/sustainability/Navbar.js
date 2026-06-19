@@ -1,6 +1,8 @@
 'use client';
 
-import Link from 'next/link';
+// PILOT SHELL — stripped nav, recolored to match DRESSENCODED Circular Couture palette
+// TODO: reconnect — when sustainability arm merges back into platform,
+// replace this component with the shared DRESSENCODED Navbar or platform auth context.
 
 export default function Navbar() {
   const styles = {
@@ -9,39 +11,47 @@ export default function Navbar() {
       justifyContent: 'space-between',
       alignItems: 'center',
       padding: '20px 40px',
-      borderBottom: '1px solid rgba(245, 196, 0, 0.2)',
+      borderBottom: '2px solid rgba(201, 168, 76, 0.5)',
+      background: '#cac9d1',
+    },
+    left: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '2px',
     },
     logo: {
       fontSize: '20px',
       fontFamily: "'Bebas Neue', sans-serif",
       fontWeight: 700,
       letterSpacing: '2px',
-      color: '#f5c400',
+      color: '#6c3794',
+      lineHeight: 1,
     },
-    navLinks: {
-      display: 'flex',
-      gap: '32px',
-      fontSize: '12px',
-      letterSpacing: '1px',
+    sub: {
+      fontSize: '10px',
+      letterSpacing: '2px',
       textTransform: 'uppercase',
+      color: 'rgba(108, 55, 148, 0.6)',
+      fontWeight: 500,
     },
-    navLink: {
-      color: '#cccccc',
-      textDecoration: 'none',
-      cursor: 'pointer',
-      transition: 'color 0.3s ease',
+    badge: {
+      fontSize: '10px',
+      letterSpacing: '2px',
+      textTransform: 'uppercase',
+      color: '#2e7d32',
+      fontWeight: 600,
+      fontFamily: "'DM Mono', monospace",
     },
   };
 
   return (
     <nav style={styles.nav}>
-      <div style={styles.logo}>[DE] DRESSENCODED</div>
-      <div style={styles.navLinks}>
-        <Link href="/home" style={styles.navLink}>HOME</Link>
-        <Link href="/closet" style={styles.navLink}>CLOSET</Link>
-        <Link href="/marketplace" style={styles.navLink}>MARKETPLACE</Link>
-        <a href="#sustainability" style={styles.navLink}>SUSTAINABILITY</a>
+      <div style={styles.left}>
+        <div style={styles.logo}>[DE] DRESSENCODED</div>
+        <div style={styles.sub}>Circular Couture</div>
       </div>
+      <div style={styles.badge}>Pilot — NYC 2026</div>
     </nav>
   );
 }
+

@@ -1,51 +1,75 @@
 'use client';
 
-export default function Hero() {
+export default function Hero({ onCTAClick }) {
   const styles = {
     hero: {
-      padding: '100px 40px',
+      padding: '80px 40px',
       textAlign: 'center',
-      borderBottom: '1px solid rgba(245, 196, 0, 0.2)',
-      background: 'linear-gradient(180deg, rgba(13, 13, 26, 1) 0%, rgba(20, 20, 35, 1) 100%)',
+      borderBottom: '2px solid rgba(201, 168, 76, 0.4)',
+      background: '#cac9d1',
     },
     label: {
       fontSize: '11px',
-      color: '#f5c400',
+      color: '#2e7d32',
       letterSpacing: '2px',
       textTransform: 'uppercase',
-      marginBottom: '24px',
+      marginBottom: '16px',
       fontWeight: 600,
     },
     h1: {
-      fontSize: '64px',
+      fontSize: '48px',
       fontFamily: "'Bebas Neue', sans-serif",
       fontWeight: 700,
-      letterSpacing: '3px',
-      lineHeight: '1.1',
-      marginBottom: '32px',
-      textTransform: 'uppercase',
-      maxWidth: '800px',
-      margin: '0 auto 32px',
+      letterSpacing: '1px',
+      lineHeight: '1.15',
+      marginBottom: '20px',
+      color: '#6c3794',
+      maxWidth: '700px',
+      margin: '0 auto 20px',
     },
     intro: {
-      fontSize: '16px',
-      color: '#aaaaaa',
-      maxWidth: '700px',
-      margin: '0 auto',
-      lineHeight: '1.9',
-      fontStyle: 'italic',
-      letterSpacing: '0.5px',
+      fontSize: '15px',
+      color: '#3a3848',
+      maxWidth: '650px',
+      margin: '0 auto 36px',
+      lineHeight: '1.8',
+    },
+    cta: {
+      display: 'inline-block',
+      padding: '14px 36px',
+      border: 'none',
+      backgroundColor: '#6c3794',
+      color: '#ffffff',
+      fontSize: '12px',
+      fontFamily: "'DM Mono', monospace",
+      fontWeight: 700,
+      letterSpacing: '1.5px',
+      textTransform: 'uppercase',
+      cursor: 'pointer',
+      borderRadius: '4px',
+      transition: 'all 0.3s ease',
     },
   };
 
   return (
     <section style={styles.hero}>
       <div style={styles.label}>Our Commitment</div>
-      <h1 style={styles.h1}>Fashion That<br />Remembers</h1>
+      <h1 style={styles.h1}>Circular Couture</h1>
       <p style={styles.intro}>
-        The fashion industry is the second largest polluter on earth. DressEncoded was built on a single counter-premise: that a garment
-        with a verified identity, a provenance chain, and a network of owners is a garment worth keeping.
+        The only place your style makes the world greener by becoming the antidote to the landfill
+        and polluted waterways.
       </p>
+      {onCTAClick && (
+        <button
+          style={styles.cta}
+          onClick={onCTAClick}
+          onMouseEnter={(e) => { e.target.style.backgroundColor = '#534AB7'; }}
+          onMouseLeave={(e) => { e.target.style.backgroundColor = '#6c3794'; }}
+        >
+          → Register Your Drop
+        </button>
+      )}
     </section>
   );
 }
+

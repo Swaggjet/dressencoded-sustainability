@@ -2,51 +2,34 @@
 
 export default function FlowCards({ activeStep, setActiveStep }) {
   const styles = {
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '24px',
-    },
+    container: { display: 'flex', flexDirection: 'column', gap: '16px' },
     card: {
-      padding: '32px',
-      border: '1px solid rgba(245, 196, 0, 0.2)',
+      padding: '24px',
+      border: '1.5px solid rgba(108, 55, 148, 0.3)',
       borderRadius: '4px',
-      backgroundColor: 'rgba(245, 196, 0, 0.02)',
+      backgroundColor: '#ffffff',
       cursor: 'pointer',
       transition: 'all 0.3s ease',
     },
     cardActive: {
-      border: '2px solid #f5c400',
-      backgroundColor: 'rgba(245, 196, 0, 0.15)',
-      boxShadow: '0 0 20px rgba(245, 196, 0, 0.3)',
+      border: '2px solid #3DDC84',
+      backgroundColor: '#494475',
     },
     number: {
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
-      width: '44px',
-      height: '44px',
+      width: '38px',
+      height: '38px',
       borderRadius: '50%',
-      backgroundColor: '#f5c400',
-      color: '#0d0d1a',
+      backgroundColor: '#6c3794',
+      color: '#ffffff',
       fontWeight: 700,
-      fontSize: '18px',
-      marginBottom: '16px',
-    },
-    title: {
-      fontSize: '16px',
-      fontFamily: "'Bebas Neue', sans-serif",
-      fontWeight: 700,
-      letterSpacing: '1px',
+      fontSize: '15px',
       marginBottom: '12px',
-      color: '#f5c400',
-      textTransform: 'uppercase',
     },
-    text: {
-      fontSize: '13px',
-      color: '#cccccc',
-      lineHeight: '1.7',
-    },
+    title: { fontSize: '15px', fontWeight: 600, marginBottom: '8px' },
+    text: { fontSize: '13px', lineHeight: '1.6' },
   };
 
   const steps = [
@@ -57,13 +40,19 @@ export default function FlowCards({ activeStep, setActiveStep }) {
 
   return (
     <div style={styles.container}>
-      {steps.map((step, i) => (
-        <div key={i} style={{ ...styles.card, ...(activeStep === i ? styles.cardActive : {}) }} onClick={() => setActiveStep(i)}>
-          <div style={styles.number}>{step.num}</div>
-          <h3 style={styles.title}>{step.title}</h3>
-          <p style={styles.text}>{step.desc}</p>
-        </div>
-      ))}
+      {steps.map((step, i) => {
+        const active = activeStep === i;
+        return (
+          <div key={i}
+            style={{ ...styles.card, ...(active ? styles.cardActive : {}) }}
+            onClick={() => setActiveStep(i)}>
+            <div style={styles.number}>{step.num}</div>
+            <h3 style={{ ...styles.title, color: active ? '#ffffff' : '#6c3794' }}>{step.title}</h3>
+            <p style={{ ...styles.text, color: active ? '#CECBF6' : '#3a3848' }}>{step.desc}</p>
+          </div>
+        );
+      })}
     </div>
   );
 }
+
