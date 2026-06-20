@@ -1,6 +1,29 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
+// weightLbs is stored in pounds (see /api/submit); the UI labels are kg.
+// Flag: change this line if you'd rather store kg directly instead of converting on display.
+const lbsToKg = (lbs) => (lbs * 0.4536).toFixed(1);
+
 export default function AquariNode({ activeStep }) {
+  const [stats, setStats] = useState({ totalLbs: 0, latestLbs: 0 });
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/stats')
+      .then((res) => (res.ok ? res.json() : { totalLbs: 0, latestLbs: 0 }))
+      .then((data) => {
+        if (!cancelled) setStats(data);
+      })
+      .catch(() => {
+        if (!cancelled) setStats({ totalLbs: 0, latestLbs: 0 });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const styles = {
     display: {
       padding: '36px 32px',
@@ -43,12 +66,12 @@ export default function AquariNode({ activeStep }) {
       <div style={styles.label}>[ Aquari Ingestion Node: AZ-04 ]</div>
       <div style={styles.screen}>
         <div style={styles.screenLabel}>Ingesting load...</div>
-        <div style={styles.weight}>4.2 kg</div>
+        <div style={styles.weight}>{lbsToKg(stats.latestLbs)} kg</div>
       </div>
       <div style={styles.stats}>
         <div style={styles.stat}>
           <div style={styles.statLabel}>Wallet Net Waste Cleared</div>
-          <div style={styles.statValue}>28.4 kg</div>
+          <div style={styles.statValue}>{lbsToKg(stats.totalLbs)} kg</div>
         </div>
         <div style={styles.stat}>
           <div style={styles.statLabel}>Water Footprint Offset</div>

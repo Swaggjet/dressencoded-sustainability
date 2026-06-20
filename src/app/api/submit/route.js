@@ -27,7 +27,7 @@ export async function POST(request) {
     email: email.trim().slice(0, 200),
     phone: phone.trim().slice(0, 40),
     weightLbs: weight,
-    eventId: 'NYC-2026-06', // set server-side, never trusted from client
+    eventId: 'SF-2026-06-21', // set server-side, never trusted from client
     joinedAt: FieldValue.serverTimestamp(),
   });
   return NextResponse.json({ ok: true });
