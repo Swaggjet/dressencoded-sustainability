@@ -50,7 +50,7 @@ export default function Navbar() {
         <div style={styles.logo}>[DE] DRESSENCODED</div>
         <div style={styles.sub}>Circular Couture</div>
       </div>
-      <div style={styles.badge}>Pilot — NYC 2026</div>
+      <div style={styles.badge}>Pilot — SF 6-21-26</div>
     </nav>
   );
 }

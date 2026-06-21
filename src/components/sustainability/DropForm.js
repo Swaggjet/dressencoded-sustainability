@@ -36,7 +36,7 @@ export default function DropForm({ onSuccess, onClose }) {
     <div style={{ position: 'fixed', inset: 0, backgroundColor: 'rgba(60,52,80,0.55)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 200, padding: '20px' }}>
       <div style={{ backgroundColor: '#ffffff', border: '2px solid #6c3794', borderRadius: '4px', padding: '40px 36px', width: '100%', maxWidth: '460px', position: 'relative' }}>
         <button onClick={onClose} style={{ position: 'absolute', top: '14px', right: '18px', background: 'none', border: 'none', color: 'rgba(108,55,148,0.5)', fontSize: '18px', cursor: 'pointer' }}>✕</button>
-        <div style={{ fontSize: '11px', color: '#2e7d32', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '8px', fontWeight: 600 }}>Aquari Node — NYC 2026</div>
+        <div style={{ fontSize: '11px', color: '#2e7d32', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '8px', fontWeight: 600 }}>Aquari Node — SF 6-21-26</div>
         <div style={{ fontSize: '24px', fontFamily: "'Bebas Neue', sans-serif", fontWeight: 700, color: '#6c3794', marginBottom: '8px' }}>Register Your Drop</div>
         <p style={{ fontSize: '12px', color: '#5f5e5a', marginBottom: '28px', lineHeight: '1.6' }}>Log your legacy waste. Earn your Circular Provenance on-chain.</p>
 
