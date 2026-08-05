@@ -1,12 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import PayoutEligibility from './PayoutEligibility';
 
 // weightLbs is stored in pounds (see /api/submit); the UI labels are kg.
 // Flag: change this line if you'd rather store kg directly instead of converting on display.
 const lbsToKg = (lbs) => (lbs * 0.4536).toFixed(1);
 
-export default function AquariNode({ activeStep }) {
+export default function AquariNode({ activeStep, onClaimClick }) {
   const [stats, setStats] = useState({ totalLbs: 0, latestLbs: 0 });
 
   useEffect(() => {
@@ -86,6 +87,7 @@ export default function AquariNode({ activeStep }) {
           <div style={{ ...styles.statValue, fontSize: '13px' }}>0x71C...8A9f</div>
         </div>
       </div>
+      <PayoutEligibility onClaimClick={onClaimClick} />
     </div>
   );
 }

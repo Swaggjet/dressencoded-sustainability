@@ -4,7 +4,7 @@ import { useState } from 'react';
 import FlowCards from './FlowCards';
 import AquariNode from './AquariNode';
 
-export default function HowItWorks() {
+export default function HowItWorks({ onClaimClick }) {
   const [activeStep, setActiveStep] = useState(0);
 
   const styles = {
@@ -43,7 +43,7 @@ export default function HowItWorks() {
       <div style={styles.rule} />
       <div style={styles.container}>
         <FlowCards activeStep={activeStep} setActiveStep={setActiveStep} />
-        <AquariNode activeStep={activeStep} />
+        <AquariNode activeStep={activeStep} onClaimClick={onClaimClick} />
       </div>
     </section>
   );
