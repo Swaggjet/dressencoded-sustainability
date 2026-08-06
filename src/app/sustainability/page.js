@@ -9,6 +9,7 @@ import HowItWorks from '@/components/sustainability/HowItWorks';
 import FooterCTA from '@/components/sustainability/FooterCTA';
 import DropForm from '@/components/sustainability/DropForm';
 import DropSuccess from '@/components/sustainability/DropSuccess';
+import ClaimModal from '@/components/sustainability/ClaimModal';
 
 export default function SustainabilityPage() {
   const [modal, setModal] = useState('none');
@@ -19,9 +20,10 @@ export default function SustainabilityPage() {
       <Pillars />
       <PullQuote />
       <HowItWorks />
-      <FooterCTA onDropSiteClick={() => setModal('form')} />
+      <FooterCTA onDropSiteClick={() => setModal('form')} onReclaimClick={() => setModal('claim')} />
       {modal === 'form' && <DropForm onSuccess={() => setModal('success')} onClose={() => setModal('none')} />}
       {modal === 'success' && <DropSuccess onClose={() => setModal('none')} />}
+      {modal === 'claim' && <ClaimModal onClose={() => setModal('none')} />}
     </div>
   );
 }

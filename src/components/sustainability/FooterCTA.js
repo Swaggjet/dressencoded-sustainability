@@ -1,6 +1,6 @@
 'use client';
 
-export default function FooterCTA({ onDropSiteClick }) {
+export default function FooterCTA({ onDropSiteClick, onReclaimClick }) {
   const btn = {
     padding: '14px 32px', border: '2px solid #6c3794', backgroundColor: 'transparent',
     color: '#6c3794', fontSize: '12px', fontFamily: "'DM Mono', monospace", fontWeight: 600,
@@ -22,7 +22,11 @@ export default function FooterCTA({ onDropSiteClick }) {
           onMouseLeave={e => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#6c3794'; }}>
           → Register Your Drop
         </button>
-        <button style={ghost} disabled>⟳ Reclaim Protocol</button>
+        <button style={btn} onClick={onReclaimClick}
+          onMouseEnter={e => { e.target.style.backgroundColor = '#6c3794'; e.target.style.color = '#ffffff'; }}
+          onMouseLeave={e => { e.target.style.backgroundColor = 'transparent'; e.target.style.color = '#6c3794'; }}>
+          ⟳ Reclaim Protocol
+        </button>
         <button style={ghost} disabled>→ Join DRESSENCODED</button>
       </div>
     </section>
