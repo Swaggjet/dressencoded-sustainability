@@ -9,7 +9,7 @@ const app = getApps()[0] ?? initializeApp({
 });
 const db = getFirestore(app);
 
-const EVENT_ID = 'SF-2026-06-21';
+const EVENT_ID = 'SF - 6 - 21 -26 Pilot';
 
 export async function GET() {
   // Equality-only filter (no orderBy) so this doesn't need a composite index.
