@@ -19,7 +19,7 @@ export default function SustainabilityPage() {
       <Hero onCTAClick={() => setModal('form')} />
       <Pillars />
       <PullQuote />
-      <HowItWorks />
+      <HowItWorks onClaimClick={() => setModal('claim')} />
       <FooterCTA onDropSiteClick={() => setModal('form')} onReclaimClick={() => setModal('claim')} />
       {modal === 'form' && <DropForm onSuccess={() => setModal('success')} onClose={() => setModal('none')} />}
       {modal === 'success' && <DropSuccess onClose={() => setModal('none')} />}
