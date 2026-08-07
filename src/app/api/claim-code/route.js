@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getApps, initializeApp, cert, applicationDefault } from 'firebase-admin/app';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
+import { Resend } from 'resend';
 import { pregenerateWalletForEmail, sendUsdcPayout } from '@/lib/payout';
 
 const app = getApps()[0] ?? initializeApp({
@@ -9,6 +10,8 @@ const app = getApps()[0] ?? initializeApp({
     : applicationDefault(),
 });
 const db = getFirestore(app);
+const FROM = 'hello@dressencoded.com';
+const SITE_URL = process.env.SUSTAINABILITY_SITE_URL;
 
 // POST /api/claim-code — code+email entry. The code IS the claim_codes
 // doc ID (set by generate-and-send-claim-codes.mjs), so this is a direct
@@ -57,12 +60,26 @@ export async function POST(request) {
     const { address } = await pregenerateWalletForEmail(email);
     const { signature } = await sendUsdcPayout({ toAddress: address, amountUsd });
     await docRef.update({ walletAddress: address, txSignature: signature, claimStatus: 'claimed' });
+    sendPayoutNotification(email, amountUsd).catch((err) =>
+      console.error('claim-code notification email failed:', err)
+    );
     return NextResponse.json({ ok: true, alreadyClaimed: false });
   } catch (err) {
     console.error('claim-code payout failed, rolling back lock:', err);
     await docRef.update({ claimStatus: 'failed', claimedAt: null }).catch(() => {});
     return bad('payout_failed', 500);
   }
+}
+
+async function sendPayoutNotification(email, amountUsd) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  await resend.emails.send({
+    from: FROM,
+    to: email,
+    subject: `$${amountUsd.toFixed(2)} is on its way — DRESSENCODED Pilot`,
+    html: `<p>$${amountUsd.toFixed(2)} is on its way.</p>
+<p>Log in at <a href="${SITE_URL}">${SITE_URL}</a> with this email to access your wallet and see it land.</p>`,
+  });
 }
 
 class HttpError extends Error {
