@@ -73,12 +73,13 @@ export async function POST(request) {
 
 async function sendPayoutNotification(email, amountUsd) {
   const resend = new Resend(process.env.RESEND_API_KEY);
+  const walletUrl = `${SITE_URL}/wallet?email=${encodeURIComponent(email)}`;
   await resend.emails.send({
     from: FROM,
     to: email,
     subject: `$${amountUsd.toFixed(2)} is on its way — DRESSENCODED Pilot`,
     html: `<p>$${amountUsd.toFixed(2)} is on its way.</p>
-<p>Log in at <a href="${SITE_URL}">${SITE_URL}</a> with this email to access your wallet and see it land.</p>`,
+<p>Log in at <a href="${walletUrl}">${walletUrl}</a> with this email to access your wallet and see it land.</p>`,
   });
 }
 
