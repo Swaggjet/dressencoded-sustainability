@@ -6,3 +6,5 @@ node_modules/
 *.pem
 serviceAccountKey.json
 .DS_Store
+.vercel
+.env*

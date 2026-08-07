@@ -1,20 +1,14 @@
-'use client';
-import { Suspense } from 'react';
-import { PrivyProvider } from '@privy-io/react-auth';
-import WalletAccess from '@/components/sustainability/WalletAccess';
+import WalletProvider from '@/components/sustainability/WalletProvider';
 
-// solana.createOnLogin: 'off' — a wallet is already pregenerated
-// server-side for every claim recipient, so the client SDK should never
-// try to create a second one here.
+// Server Component (no 'use client') so this route-segment config actually
+// takes effect. Forced dynamic because this page depends on a per-request
+// ?email= param and live client-side Privy auth state — there's no valid
+// static form of a per-user login screen. Deliberately imports only the
+// client wrapper below, never @privy-io/react-auth itself (see
+// WalletProvider.js for why that import can't live in a server-evaluated
+// file at all).
+export const dynamic = 'force-dynamic';
+
 export default function WalletPage() {
-  return (
-    <PrivyProvider
-      appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID}
-      config={{ loginMethods: ['email'], embeddedWallets: { solana: { createOnLogin: 'off' } } }}
-    >
-      <Suspense fallback={null}>
-        <WalletAccess />
-      </Suspense>
-    </PrivyProvider>
-  );
+  return <WalletProvider />;
 }
